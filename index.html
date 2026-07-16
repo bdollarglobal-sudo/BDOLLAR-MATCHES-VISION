@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BDOLLAR MATCHES VISION</title>
+    <style>
+        body { background-color: #0b0f19; color: #ffffff; font-family: sans-serif; margin: 0; padding: 0; min-height: 100vh; display: flex; flex-direction: column; }
+        header { border-bottom: 1px solid #1f2937; background-color: #111827; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        h1 { margin: 0; font-size: 1.25rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; color: #22d3ee; }
+        .status { background-color: #ef4444; color: white; font-size: 0.75rem; padding: 4px 12px; border-radius: 9999px; font-weight: bold; transition: all 0.3s; }
+        
+        .controls-container { max-width: 1200px; margin: 20px auto 0 auto; width: 90%; display: grid; grid-template-columns: 1fr; gap: 15px; }
+        @media (min-width: 768px) { .controls-container { grid-template-columns: 1fr 1fr; } }
+        .select-box { background-color: #111827; color: white; border: 1px solid #374151; padding: 10px 15px; border-radius: 8px; width: 100%; font-size: 0.9rem; cursor: pointer; outline: none; }
+        
+        main { max-width: 1200px; margin: 15px auto; width: 90%; display: grid; grid-template-columns: 1fr; gap: 24px; padding-bottom: 120px; }
+        @media (min-width: 1024px) { main { grid-template-columns: 1fr 2fr; } }
+        
+        .card { background-color: #111827; padding: 24px; border-radius: 16px; border: 1px solid #1f2937; display: flex; flex-direction: column; justify-content: space-between; height: 360px; box-sizing: border-box; }
+        .market-title { font-size: 0.75rem; font-weight: 600; color: #9ca3af; text-transform: uppercase; margin: 0 0 4px 0; }
+        .price { font-family: monospace; font-size: 2rem; font-weight: bold; color: #d1d5db; }
+        .digit-container { text-align: center; margin: 5px 0; position: relative; }
+        .large-digit { font-family: monospace; font-size: 5rem; font-weight: 900; color: #22d3ee; margin: 0; }
+        
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; border-top: 1px solid #1f2937; padding-top: 16px; text-align: center; }
+        .stat-name { font-size: 0.75rem; color: #6b7280; text-transform: uppercase; font-weight: bold; }
+        .stat-val-1 { font-size: 1.25rem; font-weight: bold; font-family: monospace; color: #34d399; margin-top: 4px; }
+        .stat-val-2 { font-size: 1.25rem; font-weight: bold; font-family: monospace; color: #fbbf24; margin-top: 4px; }
+        
+        .chart-card { background-color: #111827; padding: 24px; border-radius: 16px; border: 1px solid #1f2937; height: 360px; display: flex; flex-direction: column; box-sizing: border-box; }
+        .chart-title { font-size: 0.75rem; font-weight: 600; color: #9ca3af; text-transform: uppercase; margin: 0 0 16px 0; }
+        .bar-container { display: flex; justify-content: space-between; align-items: flex-end; width: 100%; height: 100%; padding-bottom: 10px; }
+        .bar-wrapper { display: flex; flex-direction: column; align-items: center; flex: 1; height: 100%; justify-content: flex-end; }
+        .bar { width: 65%; background-color: rgba(34, 211, 238, 0.4); border: 2px solid #22d3ee; border-radius: 4px; min-height: 2px; height: 0%; transition: height 0.1s; }
+        .bar-label { font-size: 0.85rem; font-weight: bold; color: #9ca3af; margin-top: 8px; font-family: monospace; }
+        footer { text-align: center; padding: 16px; font-size: 0.75rem; color: #4b5563; background-color: #111827; border-top: 1px solid #1f2937; width: 100%; position: fixed; bottom: 0; left: 0; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>⚡ BDOLLAR MATCHES VISION</h1>
+        <span id="status-badge" class="status">CONNECTING...</span>
+    </header>
+    <div class="controls-container">
+        <div>
+            <label class="market-title" style="display:block; margin-bottom:5px; color:#9ca3af; font-size:0.75rem;">Select Volatility Market</label>
+            <select id="market-select" class="select-box">
+                <option value="1hz10V">Volatility 10 (1s) Index</option>
+                <option value="1hz25V">Volatility 25 (1s) Index</option>
+                <option value="1hz50V">Volatility 50 (1s) Index</option>
+                <option value="1hz75V">Volatility 75 (1s) Index</option>
+                <option value="1hz100V" selected>Volatility 100 (1s) Index</option>
+                <option value="R_10">Volatility 10 Index</option>
+                <option value="R_25">Volatility 25 Index</option>
+                <option value="R_50">Volatility 50 Index</option>
+                <option value="R_75">Volatility 75 Index</option>
+                <option value="R_100">Volatility 100 Index</option>
+            </select>
+        </div>
+        <div>
+            <label class="market-title" style="display:block; margin-bottom:5px; color:#9ca3af; font-size:0.75rem;">Select Strategy Mode</label>
+            <select id="strategy-select" class="select-box">
+                <option value="even_odd" selected>Even / Odd Scanner</option>
+                <option value="over_under">Over / Under Scanner</option>
+                <option value="matches_differs">Matches / Differs Tracker</option>
+                <option value="rise_fall">Rise / Fall Analyzer</option>
+            </select>
+        </div>
+    </div>
+    <main>
+        <div class="card">
+            <div>
+                <p id="display-market-name" class="market-title">Market Feed</p>
+                <div id="live-price" class="price">0.00</div>
+            </div>
+            <div class="digit-container">
+                <span id="display-metric-label" class="digit-label" style="display:block; font-size:0.75rem; color:#6b7280;">LAST DIGIT</span>
+                <p id="last-digit" class="large-digit">0</p>
+            </div>
+            <div class="stats-grid">
+                <div><span id="label-stat-1" class="stat-name">EVEN</span><div id="val-stat-1" class="stat-val-1">0%</div></div>
+                <div><span id="label-stat-2" class="stat-name">ODD</span><div id="val-stat-2" class="stat-val-2">0%</div></div>
+            </div>
+        </div>
+        <div class="chart-card">
+            <p id="chart-dynamic-title" class="chart-title">Digit Frequency Distribution</p>
+            <div class="bar-container">
+                <div class="bar-wrapper"><div id="bar-0" class="bar"></div><span class="bar-label">0</span></div>
+                <div class="bar-wrapper"><div id="bar-1" class="bar"></div><span class="bar-label">1</span></div>
+                <div class="bar-wrapper"><div id="bar-2" class="bar"></div><span class="bar-label">2</span></div>
+                <div class="bar-wrapper"><div id="bar-3" class="bar"></div><span class="bar-label">3</span></div>
+                <div class="bar-wrapper"><div id="bar-4" class="bar"></div><span class="bar-label">4</span></div>
+                <div class="bar-wrapper"><div id="bar-5" class="bar"></div><span class="bar-label">5</span></div>
+                <div class="bar-wrapper"><div id="bar-6" class="bar"></div><span class="bar-label">6</span></div>
+                <div class="bar-wrapper"><div id="bar-7" class="bar"></div><span class="bar-label">7</span></div>
+                <div class="bar-wrapper"><div id="bar-8" class="bar"></div><span class="bar-label">8</span></div>
+                <div class="bar-wrapper"><div id="bar-9" class="bar"></div><span class="bar-label">9</span></div>
+            </div>
+        </div>
+    </main>
+    <div class="alert-panel">
+        <div style="font-family: monospace; font-size: 0.8rem; color: #9ca3af;">
+            SIGNAL TRACKER: <span id="alert-status-text" style="color:#fbbf24;">Connecting to Deriv...</span>
+        </div>
+    </div>
+    <footer>BDOLLAR MATCHES VISION</footer>
+    <script src="engine.js"></script>
+</body>
+</html>
