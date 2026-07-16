@@ -5,10 +5,8 @@ var appID = "1089";
 
 var marketSelect = document.getElementById('market-select');
 var strategySelect = document.getElementById('strategy-select');
-var marketLabel = document.getElementById('display-market-name');
 var priceEl = document.getElementById('live-price');
 var digitEl = document.getElementById('last-digit');
-var alertStatus = document.getElementById('alert-status-text');
 var statusBadge = document.getElementById('status-badge');
 var val1 = document.getElementById('val-stat-1');
 var val2 = document.getElementById('val-stat-2');
@@ -18,20 +16,13 @@ function startLiveConnection() {
     digitHistory = [];
     fullPriceHistory = [];
     
-    statusBadge.innerText = "CONNECTING...";
-    statusBadge.style.backgroundColor = "#fbbf24";
-    statusBadge.style.color = "#0b0f19";
-    alertStatus.innerText = "Connecting to Deriv data stream...";
-    alertStatus.style.color = "#fbbf24";
-
-    socket = new WebSocket("wss://://binaryws.com" + appID);
+    // Updated to Deriv's official secure web endpoint for hosted websites
+    socket = new WebSocket("wss://://derivws.com" + appID);
 
     socket.onopen = function() {
         statusBadge.innerText = "BDOLLAR PRO";
         statusBadge.style.backgroundColor = "#22d3ee";
         statusBadge.style.color = "#0b0f19";
-        alertStatus.innerText = "Streaming live market data...";
-        alertStatus.style.color = "#34d399";
         socket.send(JSON.stringify({ ticks: marketSelect.value }));
     };
 
@@ -130,5 +121,4 @@ strategySelect.onchange = function() {
     startLiveConnection();
 };
 
-marketLabel.innerText = "Market: " + marketSelect.options[marketSelect.selectedIndex].text;
 startLiveConnection();
