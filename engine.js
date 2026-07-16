@@ -1,7 +1,7 @@
 var digitHistory = [];
 var fullPriceHistory = [];
 var socket = null;
-var appID = "36544"; 
+var appID = "1089"; 
 
 var marketSelect = document.getElementById('market-select');
 var strategySelect = document.getElementById('strategy-select');
