@@ -9,7 +9,7 @@
         body { background-color: #0b0f19; color: #ffffff; font-family: sans-serif; margin: 0; padding: 0; min-height: 100vh; display: flex; flex-direction: column; scroll-behavior: smooth; }
         
         /* Navigation Bar Styles */
-        nav { border-bottom: 1px solid #1f2937; background-color: #111827; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.3); position: sticky; top: 0; z-index: 100; }
+        nav { border-bottom: 1px solid #1f2937; background-color: #111827; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.3); position: sticky; top: 0; z-index: 100; box-sizing: border-box; }
         .logo { font-size: 1.25rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; color: #22d3ee; margin: 0; }
         .nav-links { display: flex; gap: 20px; align-items: center; }
         .nav-links a { color: #9ca3af; text-decoration: none; font-size: 0.9rem; font-weight: 500; cursor: pointer; }
@@ -19,8 +19,8 @@
         .status { background-color: #ef4444; color: white; font-size: 0.75rem; padding: 4px 12px; border-radius: 9999px; font-weight: bold; display: none; }
 
         /* VIEW 1: LANDING PAGE MARKUP LAYERS */
-        #landing-view { display: block; padding-bottom: 100px; }
-        .hero { text-align: center; padding: 60px 20px; max-width: 800px; margin: 0 auto; }
+        #landing-view { display: block; padding-bottom: 100px; width: 100%; box-sizing: border-box; }
+        .hero { text-align: center; padding: 60px 20px; max-width: 800px; margin: 0 auto; box-sizing: border-box; }
         .hero h2 { font-size: 2.25rem; font-weight: 800; color: #ffffff; margin: 0 0 15px 0; }
         .hero p { font-size: 1.05rem; color: #9ca3af; line-height: 1.6; margin: 0 0 30px 0; }
         .cta-group { display: flex; gap: 15px; justify-content: center; }
@@ -30,14 +30,14 @@
         .btn-secondary:hover { border-color: #9ca3af; }
 
         /* Metric Highlights Row Grid */
-        .grid-4 { max-width: 1200px; margin: 30px auto; width: 90%; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-        .metric-card { background-color: #111827; border: 1px solid #1f2937; padding: 20px; border-radius: 12px; text-align: center; }
+        .grid-4 { max-width: 1200px; margin: 30px auto; width: 90%; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; box-sizing: border-box; }
+        .metric-card { background-color: #111827; border: 1px solid #1f2937; padding: 20px; border-radius: 12px; text-align: center; box-sizing: border-box; }
         .metric-card h3 { font-size: 1.6rem; color: #22d3ee; margin: 0 0 5px 0; }
         .metric-card p { font-size: 0.8rem; color: #6b7280; margin: 0; text-transform: uppercase; font-weight: bold; }
 
         /* Product Capabilities Block Columns */
-        .section-title { text-align: center; font-size: 1.5rem; font-weight: 700; margin: 50px 0 20px 0; color: #ffffff; text-transform: uppercase; tracking-wider; }
-        .grid-3 { max-width: 1200px; margin: 0 auto 30px auto; width: 90%; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .section-title { text-align: center; font-size: 1.5rem; font-weight: 700; margin: 50px 0 20px 0; color: #ffffff; text-transform: uppercase; tracking-wider; width: 100%; display: block; }
+        .grid-3 { max-width: 1200px; margin: 0 auto 30px auto; width: 90%; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; box-sizing: border-box; }
         .feature-card { background-color: #111827; border: 1px solid #1f2937; padding: 24px; border-radius: 16px; box-sizing: border-box; }
         .feature-card h4 { color: #22d3ee; font-size: 1.1rem; margin: 0 0 10px 0; }
         .feature-card p { color: #9ca3af; font-size: 0.9rem; line-height: 1.5; margin: 0; }
@@ -56,19 +56,19 @@
         .faq-card p { margin: 0; font-size: 0.9rem; color: #9ca3af; line-height: 1.5; }
 
         /* Social Network Community Elements */
-        .social-row { display: flex; gap: 15px; justify-content: center; margin: 20px 0 60px 0; }
-        .social-link { padding: 10px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9rem; }
+        .social-row { display: flex; gap: 15px; justify-content: center; margin: 20px 0 60px 0; width: 100%; box-sizing: border-box; }
+        .social-link { padding: 10px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9rem; display: inline-block; }
         .tg { background-color: #0088cc; color: white; }
         .wa { background-color: #25d366; color: white; }
 
-        /* VIEW 2: INTERACTIVE TRADING DASHBOARD WRAPPER (HIDDEN BY DEFAULT) */
-        #scanner-view { display: none; }
-        .controls-container { max-width: 1200px; margin: 20px auto 0 auto; width: 90%; display: grid; grid-template-columns: 1fr; gap: 15px; }
+        /* VIEW 2: INTERACTIVE TRADING DASHBOARD WRAPPER */
+        #scanner-view { display: none; width: 100%; box-sizing: border-box; }
+        .controls-container { max-width: 1200px; margin: 20px auto 0 auto; width: 90%; display: grid; grid-template-columns: 1fr; gap: 15px; box-sizing: border-box; }
         @media (min-width: 768px) { .controls-container { grid-template-columns: 1fr 1fr; } }
         .select-box { background-color: #111827; color: white; border: 1px solid #374151; padding: 10px 15px; border-radius: 8px; width: 100%; font-size: 0.9rem; cursor: pointer; outline: none; box-sizing: border-box; }
         .select-box:focus { border-color: #22d3ee; }
         
-        main { max-width: 1200px; margin: 15px auto; width: 90%; display: grid; grid-template-columns: 1fr; gap: 24px; padding-bottom: 120px; }
+        main { max-width: 1200px; margin: 15px auto; width: 90%; display: grid; grid-template-columns: 1fr; gap: 24px; padding-bottom: 120px; box-sizing: border-box; }
         @media (min-width: 1024px) { main { grid-template-columns: 1fr 2fr; } }
         
         .card { background-color: #111827; padding: 24px; border-radius: 16px; border: 1px solid #1f2937; display: flex; flex-direction: column; justify-content: space-between; height: 360px; box-sizing: border-box; }
@@ -89,13 +89,12 @@
         .bar-label { font-size: 0.85rem; font-weight: bold; color: #9ca3af; margin-top: 8px; font-family: monospace; }
         
         .alert-panel { max-width: 1200px; margin: 0 auto 20px auto; width: 90%; background-color: #111827; border: 1px solid #1f2937; border-radius: 12px; padding: 15px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center; }
-
-        footer { text-align: center; padding: 16px; font-size: 0.75rem; color: #4b5563; background-color: #111827; border-top: 1px solid #1f2937; width: 100%; position: fixed; bottom: 0; left: 0; width: 100%; box-sizing: border-box; z-index: 10; }
+        footer { text-align: center; padding: 16px; font-size: 0.75rem; color: #4b5563; background-color: #111827; border-top: 1px solid #1f2937; width: 100%; position: fixed; bottom: 0; left: 0; box-sizing: border-box; z-index: 10; }
     </style>
 </head>
 <body>
 
-    <!-- Unified Share Header Top Menu Bar -->
+    <!-- Unified Header Navigation -->
     <nav>
         <div class="logo">⚡ BDOLLAR MATCHES VISION</div>
         <div class="nav-links">
@@ -107,16 +106,10 @@
         </div>
     </nav>
 
-    <!-- LAYER ONE: MARKETING CONTENT ENTIRE LANDING SYSTEM -->
+    <!-- CONTAINER 1: LANDING PAGE GRAPHICS LAYERS -->
     <div id="landing-view">
         <section class="hero">
             <h2>Smart Digit Signals for Deriv Traders</h2>
             <p>Matches Vision delivers probability-driven digit insights for Matches and Even / Odd strategies across volatility indices. Built for precision, timing, and clarity.</p>
             <div class="cta-group">
                 <button class="btn-primary" onclick="activateScannerDashboard()">Get Access</button>
-                <button class="btn-secondary" onclick="document.getElementById('pricing-target').scrollIntoView();">View Pricing</button>
-            </div>
-        </section>
-
-        <section class="grid-4">
-            <div class="metric-card"><h3>High</h3><p>Signal Accuracy</p></div>
