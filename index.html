@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BDOLLAR MATCHES VISION</title>
     <style>
+        /* Base Global Theme Layout Definitions */
         body { background-color: #0b0f19; color: #ffffff; font-family: sans-serif; margin: 0; padding: 0; min-height: 100vh; display: flex; flex-direction: column; scroll-behavior: smooth; }
+        
+        /* Navigation Top Menu Bar Styles */
         nav { border-bottom: 1px solid #1f2937; background-color: #111827; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.3); position: sticky; top: 0; z-index: 100; box-sizing: border-box; }
         .logo { font-size: 1.25rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; color: #22d3ee; margin: 0; }
         .nav-links { display: flex; gap: 20px; align-items: center; }
@@ -15,7 +18,8 @@
         .btn-header:hover { background-color: #06b6d4; }
         .status { background-color: #ef4444; color: white; font-size: 0.75rem; padding: 4px 12px; border-radius: 9999px; font-weight: bold; display: none; }
 
-        #landing-view { display: block; padding-bottom: 100px; width: 100%; box-sizing: border-box; }
+        /* VIEW CONTAINER 1: SALES PLATFORM LANDING LAYOUTS */
+        #landing-view { display: block; padding-bottom: 140px; width: 100%; box-sizing: border-box; }
         .hero { text-align: center; padding: 60px 20px; max-width: 800px; margin: 0 auto; box-sizing: border-box; }
         .hero h2 { font-size: 2.25rem; font-weight: 800; color: #ffffff; margin: 0 0 15px 0; }
         .hero p { font-size: 1.05rem; color: #9ca3af; line-height: 1.6; margin: 0 0 30px 0; }
@@ -25,17 +29,20 @@
         .btn-primary:hover { background-color: #06b6d4; }
         .btn-secondary:hover { border-color: #9ca3af; }
 
+        /* Metrics Row Highlight Grid Boxes */
         .grid-4 { max-width: 1200px; margin: 30px auto; width: 90%; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; box-sizing: border-box; }
         .metric-card { background-color: #111827; border: 1px solid #1f2937; padding: 20px; border-radius: 12px; text-align: center; box-sizing: border-box; }
         .metric-card h3 { font-size: 1.6rem; color: #22d3ee; margin: 0 0 5px 0; }
         .metric-card p { font-size: 0.8rem; color: #6b7280; margin: 0; text-transform: uppercase; font-weight: bold; }
 
+        /* System Capabilities Card Blocks Columns */
         .section-title { text-align: center; font-size: 1.5rem; font-weight: 700; margin: 50px 0 20px 0; color: #ffffff; text-transform: uppercase; tracking-wider; width: 100%; display: block; }
         .grid-3 { max-width: 1200px; margin: 0 auto 30px auto; width: 90%; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; box-sizing: border-box; }
         .feature-card { background-color: #111827; border: 1px solid #1f2937; padding: 24px; border-radius: 16px; box-sizing: border-box; }
         .feature-card h4 { color: #22d3ee; font-size: 1.1rem; margin: 0 0 10px 0; }
         .feature-card p { color: #9ca3af; font-size: 0.9rem; line-height: 1.5; margin: 0; }
 
+        /* Pricing Information Matrix Items Layout */
         .pricing-card { background-color: #111827; border: 1px solid #1f2937; padding: 25px; border-radius: 16px; text-align: center; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box; }
         .pricing-card h4 { margin: 0; font-size: 1.25rem; color: #ffffff; }
         .price-tag { font-size: 2.25rem; font-weight: 800; color: #22d3ee; margin: 15px 0; }
@@ -43,15 +50,18 @@
         .pricing-features li { color: #9ca3af; font-size: 0.9rem; margin-bottom: 10px; }
         .pricing-features li::before { content: "✓ "; color: #34d399; font-weight: bold; margin-right: 5px; }
 
+        /* FAQ Row Dropdowns Panels */
         .faq-card { background-color: #111827; border: 1px solid #1f2937; padding: 20px; border-radius: 12px; max-width: 800px; margin: 15px auto; width: 90%; box-sizing: border-box; }
         .faq-card h5 { margin: 0 0 8px 0; font-size: 1rem; color: #22d3ee; }
         .faq-card p { margin: 0; font-size: 0.9rem; color: #9ca3af; line-height: 1.5; }
 
+        /* Social Networks Community Connect Links */
         .social-row { display: flex; gap: 15px; justify-content: center; margin: 20px 0 60px 0; width: 100%; box-sizing: border-box; }
         .social-link { padding: 10px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9rem; display: inline-block; }
         .tg { background-color: #0088cc; color: white; }
         .wa { background-color: #25d366; color: white; }
 
+        /* VIEW CONTAINER 2: THE INTERACTIVE SCANNING HARDWARE LOOP (HIDDEN AT START) */
         #scanner-view { display: none; width: 100%; box-sizing: border-box; }
         .controls-container { max-width: 1200px; margin: 20px auto 0 auto; width: 90%; display: grid; grid-template-columns: 1fr; gap: 15px; box-sizing: border-box; }
         @media (min-width: 768px) { .controls-container { grid-template-columns: 1fr 1fr; } }
@@ -84,10 +94,12 @@
 </head>
 <body>
 
+    <!-- Unified Header Navigation Menu -->
     <nav>
         <div class="logo">⚡ BDOLLAR MATCHES VISION</div>
         <div class="nav-links">
             <a onclick="document.getElementById('features-target').scrollIntoView();">Features</a>
+            <a onclick="document.getElementById('how-it-works-target').scrollIntoView();">How It Works</a>
             <a onclick="document.getElementById('pricing-target').scrollIntoView();">Pricing</a>
             <a onclick="document.getElementById('faq-target').scrollIntoView();">FAQ</a>
             <button class="btn-header" onclick="activateScannerDashboard()">Access Tool</button>
@@ -95,20 +107,7 @@
         </div>
     </nav>
 
+    <!-- LAYER ONE: PROMOTIONAL LANDING SCREEN LAYOUTS -->
     <div id="landing-view">
         <section class="hero">
             <h2>Smart Digit Signals for Deriv Traders</h2>
-            <p>Matches Vision delivers probability-driven digit insights for Matches and Even / Odd strategies across volatility indices. Built for precision, timing, and clarity.</p>
-            <div class="cta-group">
-                <button class="btn-primary" onclick="activateScannerDashboard()">Get Access</button>
-                <button class="btn-secondary" onclick="document.getElementById('pricing-target').scrollIntoView();">View Pricing</button>
-            </div>
-        </section>
-
-        <section class="grid-4">
-            <div class="metric-card"><h3>High</h3><p>Signal Accuracy</p></div>
-            <div class="metric-card"><h3>10+</h3><p>Signals Per Day</p></div>
-            <div class="metric-card"><h3>24/7</h3><p>Market Monitoring</p></div>
-            <div class="metric-card"><h3>All</h3><p>Volatility Indices</p></div>
-        </section>
-
